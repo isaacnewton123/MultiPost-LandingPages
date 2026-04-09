@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 const SITE_NAME = 'MultiPost';
 const DEFAULT_DESCRIPTION = 'Save time and grow your audience with MultiPost. Distribute short-form videos to YouTube, TikTok, Instagram, Facebook & more in a single click.';
 const SITE_URL = 'https://multipost.pro';
-const DEFAULT_IMAGE = 'https://pbs.twimg.com/media/GrKgsrpXkAANiI9?format=png&name=small';
+const DEFAULT_IMAGE = 'https://multipost.pro/LogoWithoutBG.png';
 
 const SEO = ({ title, description, path = '/', image, article, publishedTime, author, tags }) => {
   const pageTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - One Video. Every Platform. Zero Friction.`;
