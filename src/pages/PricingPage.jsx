@@ -163,7 +163,7 @@ const PricingPage = () => {
                 mb: 2,
               }}
             >
-              Start Free, <Box component="span" sx={{ color: theme.palette.secondary.light }}>Upgrade Anytime</Box>
+              Start Free, <Box component="span" sx={{ color: theme.palette.secondary.main }}>Upgrade Anytime</Box>
             </Typography>
             
             <Typography

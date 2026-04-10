@@ -10,9 +10,9 @@ const theme = createTheme({
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#d32f2f', // Accessible CTA red (5.0:1 on white)
-      light: '#ffab91', // Accessible accent on dark bg (4.7:1 on primary.main)
-      dark: '#9a0007',
+      main: '#e84c3d', // Vibrant accent color for CTAs
+      light: '#ff7b6a',
+      dark: '#b22e22',
       contrastText: '#ffffff',
     },
     background: {

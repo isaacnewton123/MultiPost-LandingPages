@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useSearchParams, Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import SEO from '../components/SEO';
@@ -14,15 +14,17 @@ import CardActionArea from '@mui/material/CardActionArea';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
-import { useTheme } from '@mui/material/styles';
+import { useTheme, alpha } from '@mui/material/styles';
 import { m } from 'framer-motion';
 
 // Icons
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PersonIcon from '@mui/icons-material/Person';
 
 const POSTS_PER_PAGE = 6;
+const DOMAIN = 'https://multipost.pro';
 
 // Animation variants
 const fadeInUp = {
@@ -42,6 +44,10 @@ const staggerContainer = {
   },
 };
 
+// ── Helper: build crawlable href for a given page number ──────────
+const pageHref = (page) => (page <= 1 ? '/blog' : `/blog?page=${page}`);
+const fullPageHref = (page) => `${DOMAIN}${pageHref(page)}`;
+
 const BlogPage = () => {
   const theme = useTheme();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -58,41 +64,82 @@ const BlogPage = () => {
     return allPosts.filter((p) => p.category === activeCategory);
   }, [allPosts, activeCategory]);
 
-  // Paginate only the "All" view; filtered view shows every match
+  // ── True page-sliced pagination (NOT accumulating) ───────────────
   const isFiltered = activeCategory !== 'All';
+  const totalPages = isFiltered
+    ? 1
+    : Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+
+  // Clamp page to valid range
+  const safePage = Math.min(currentPage, totalPages);
+
   const visiblePosts = isFiltered
     ? filteredPosts
-    : filteredPosts.slice(0, currentPage * POSTS_PER_PAGE);
+    : filteredPosts.slice(
+        (safePage - 1) * POSTS_PER_PAGE,
+        safePage * POSTS_PER_PAGE
+      );
 
-  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
-  const hasMore = !isFiltered && currentPage * POSTS_PER_PAGE < filteredPosts.length;
-  const nextPage = currentPage + 1;
+  const hasPrev = !isFiltered && safePage > 1;
+  const hasNext = !isFiltered && safePage < totalPages;
 
   // ── Handlers ─────────────────────────────────────────────────────
-  const handleLoadMore = (e) => {
-    e.preventDefault();
-    setSearchParams({ page: String(nextPage) }, { replace: false });
-    // Scroll stays; new cards animate in below
-  };
+  const navigateToPage = useCallback(
+    (page) => (e) => {
+      e.preventDefault();
+      setSearchParams(page <= 1 ? {} : { page: String(page) }, { replace: false });
+      // Smooth scroll to the blog grid
+      document.getElementById('blog-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+    [setSearchParams]
+  );
 
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
     if (category === 'All' && currentPage !== 1) {
-      setSearchParams({ page: '1' }, { replace: true });
+      setSearchParams({}, { replace: true });
     }
   };
 
+  // Scroll to top on page change (for direct URL navigation / SSR)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [safePage]);
+
   // ── SEO helpers ──────────────────────────────────────────────────
-  const seoPath = currentPage > 1 ? `/blog?page=${currentPage}` : '/blog';
-  const prevHref = currentPage > 1
-    ? `https://multipost.pro/blog${currentPage > 2 ? `?page=${currentPage - 1}` : ''}`
-    : null;
-  const nextHref = hasMore ? `https://multipost.pro/blog?page=${nextPage}` : null;
+  const seoPath = safePage > 1 ? `/blog?page=${safePage}` : '/blog';
+  const prevHref = hasPrev ? fullPageHref(safePage - 1) : null;
+  const nextHref = hasNext ? fullPageHref(safePage + 1) : null;
+
+  // Build visible page numbers with ellipsis for large sets
+  const getPageNumbers = () => {
+    if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    const pages = [];
+    pages.push(1);
+
+    if (safePage > 3) pages.push('...');
+
+    const start = Math.max(2, safePage - 1);
+    const end = Math.min(totalPages - 1, safePage + 1);
+    for (let i = start; i <= end; i++) pages.push(i);
+
+    if (safePage < totalPages - 2) pages.push('...');
+
+    pages.push(totalPages);
+    return pages;
+  };
+
+  const pageNumbers = getPageNumbers();
 
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <SEO
-        title={currentPage > 1 ? `Blog — Page ${currentPage}` : 'Blog — Free Auto Posting Tips & Video Distribution'}
+        title={
+          safePage > 1
+            ? `Blog — Page ${safePage}`
+            : 'Blog — Free Auto Posting Tips & Video Distribution'
+        }
         description="Tips, strategies, and insights on multi-platform content distribution, free auto posting, short-form video optimization, and social media growth with unlimited platform connections."
         path={seoPath}
       />
@@ -190,12 +237,15 @@ const BlogPage = () => {
 
           {/* Blog posts grid */}
           <Grid
+            id="blog-grid"
             container
             spacing={4}
             component={m.div}
+            key={safePage} // re-mount to re-trigger stagger animation per page
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
+            sx={{ scrollMarginTop: '100px' }}
           >
             {visiblePosts.map((post) => (
               <Grid
@@ -263,60 +313,133 @@ const BlogPage = () => {
             ))}
           </Grid>
 
-          {/* ── Load More: crawlable <a> with JS progressive enhancement ── */}
-          {hasMore && (
-            <Box
-              sx={{ mt: 6, display: 'flex', justifyContent: 'center' }}
-              component={m.div}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <Button
-                component="a"
-                href={`/blog?page=${nextPage}`}
-                onClick={handleLoadMore}
-                variant="outlined"
-                color="primary"
-                size="large"
-                endIcon={<ArrowForwardIcon />}
-                rel="next"
-              >
-                Load More Articles
-              </Button>
-            </Box>
-          )}
-
-          {/* Visible page count for users + crawlers */}
+          {/* ── Prev / Page Numbers / Next — fully crawlable <a> tags ── */}
           {!isFiltered && totalPages > 1 && (
             <Box
               component="nav"
               aria-label="Blog pagination"
-              sx={{ mt: 4, display: 'flex', justifyContent: 'center', gap: 1, flexWrap: 'wrap' }}
+              sx={{
+                mt: 8,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: { xs: 0.5, sm: 1 },
+                flexWrap: 'wrap',
+              }}
             >
-              {Array.from({ length: totalPages }, (_, i) => {
-                const page = i + 1;
-                const href = page === 1 ? '/blog' : `/blog?page=${page}`;
-                const isActive = page <= currentPage;
-                return (
+              {/* ◀ Prev button */}
+              <Button
+                component="a"
+                href={hasPrev ? pageHref(safePage - 1) : undefined}
+                onClick={hasPrev ? navigateToPage(safePage - 1) : undefined}
+                disabled={!hasPrev}
+                rel={hasPrev ? 'prev' : undefined}
+                aria-label="Previous page"
+                variant="outlined"
+                size="medium"
+                startIcon={<NavigateBeforeIcon />}
+                sx={{
+                  minWidth: { xs: 40, sm: 110 },
+                  fontWeight: 600,
+                  borderRadius: 2,
+                  textTransform: 'none',
+                  transition: 'all 0.25s ease',
+                  '&:not(:disabled):hover': {
+                    transform: 'translateX(-3px)',
+                    boxShadow: `0 4px 14px ${alpha(theme.palette.primary.main, 0.25)}`,
+                  },
+                }}
+              >
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                  Prev
+                </Box>
+              </Button>
+
+              {/* Page number buttons */}
+              {pageNumbers.map((page, idx) =>
+                page === '...' ? (
+                  <Typography
+                    key={`ellipsis-${idx}`}
+                    variant="body2"
+                    sx={{ mx: 0.5, color: 'text.secondary', userSelect: 'none' }}
+                  >
+                    …
+                  </Typography>
+                ) : (
                   <Button
                     key={page}
                     component="a"
-                    href={href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setSearchParams(page === 1 ? {} : { page: String(page) }, { replace: false });
-                    }}
+                    href={pageHref(page)}
+                    onClick={navigateToPage(page)}
                     size="small"
-                    variant={isActive ? 'contained' : 'text'}
+                    variant={page === safePage ? 'contained' : 'text'}
                     color="primary"
-                    sx={{ minWidth: 36, fontWeight: 600 }}
+                    aria-label={`Page ${page}`}
+                    aria-current={page === safePage ? 'page' : undefined}
+                    sx={{
+                      minWidth: 40,
+                      height: 40,
+                      fontWeight: page === safePage ? 700 : 500,
+                      borderRadius: 2,
+                      transition: 'all 0.25s ease',
+                      ...(page === safePage
+                        ? {
+                            boxShadow: `0 4px 14px ${alpha(theme.palette.primary.main, 0.35)}`,
+                            pointerEvents: 'none',
+                          }
+                        : {
+                            '&:hover': {
+                              backgroundColor: alpha(theme.palette.primary.main, 0.08),
+                              transform: 'translateY(-2px)',
+                            },
+                          }),
+                    }}
                   >
                     {page}
                   </Button>
-                );
-              })}
+                )
+              )}
+
+              {/* Next ▶ button */}
+              <Button
+                component="a"
+                href={hasNext ? pageHref(safePage + 1) : undefined}
+                onClick={hasNext ? navigateToPage(safePage + 1) : undefined}
+                disabled={!hasNext}
+                rel={hasNext ? 'next' : undefined}
+                aria-label="Next page"
+                variant="outlined"
+                size="medium"
+                endIcon={<NavigateNextIcon />}
+                sx={{
+                  minWidth: { xs: 40, sm: 110 },
+                  fontWeight: 600,
+                  borderRadius: 2,
+                  textTransform: 'none',
+                  transition: 'all 0.25s ease',
+                  '&:not(:disabled):hover': {
+                    transform: 'translateX(3px)',
+                    boxShadow: `0 4px 14px ${alpha(theme.palette.primary.main, 0.25)}`,
+                  },
+                }}
+              >
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                  Next
+                </Box>
+              </Button>
             </Box>
+          )}
+
+          {/* Page info text for accessibility + crawlers */}
+          {!isFiltered && totalPages > 1 && (
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ mt: 2, textAlign: 'center' }}
+              aria-live="polite"
+            >
+              Page {safePage} of {totalPages}
+            </Typography>
           )}
         </Container>
       </Box>
@@ -324,4 +447,4 @@ const BlogPage = () => {
   );
 };
 
-export default BlogPage; 
+export default BlogPage;
