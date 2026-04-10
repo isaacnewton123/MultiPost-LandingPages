@@ -13,7 +13,7 @@ import {
   Paper,
   Divider
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // Feature Icons
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -172,7 +172,7 @@ const FeaturesPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -215,7 +215,7 @@ const FeaturesPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -264,7 +264,7 @@ const FeaturesPage = () => {
           </Box>
 
           <Box
-            component={motion.div}
+            component={m.div}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -274,7 +274,7 @@ const FeaturesPage = () => {
               {coreFeatures.map((feature, i) => (
                 <Grid item xs={12} sm={6} key={i}>
                   <Card
-                    component={motion.div}
+                    component={m.div}
                     variants={fadeInUp}
                     sx={{
                       height: '100%',
@@ -323,7 +323,7 @@ const FeaturesPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -372,7 +372,7 @@ const FeaturesPage = () => {
           </Box>
 
           <Box
-            component={motion.div}
+            component={m.div}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -382,7 +382,7 @@ const FeaturesPage = () => {
               {toolFeatures.map((feature, i) => (
                 <Grid item xs={12} sm={6} md={4} key={i}>
                   <Card
-                    component={motion.div}
+                    component={m.div}
                     variants={fadeInUp}
                     sx={{
                       height: '100%',
@@ -419,7 +419,7 @@ const FeaturesPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -468,7 +468,7 @@ const FeaturesPage = () => {
           </Box>
 
           <Box
-            component={motion.div}
+            component={m.div}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -478,7 +478,7 @@ const FeaturesPage = () => {
               {platformFeatures.map((feature, i) => (
                 <Grid item xs={12} sm={6} md={4} key={i}>
                   <Card
-                    component={motion.div}
+                    component={m.div}
                     variants={fadeInUp}
                     sx={{
                       height: '100%',
@@ -532,7 +532,7 @@ const FeaturesPage = () => {
       >
         <Container maxWidth="md">
           <Paper
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

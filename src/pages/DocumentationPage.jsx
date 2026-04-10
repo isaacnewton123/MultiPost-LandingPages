@@ -35,7 +35,7 @@ import {
   StepLabel,
   StepContent,
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 
 // Icons
@@ -260,7 +260,7 @@ const DocumentationPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -293,7 +293,7 @@ const DocumentationPage = () => {
 
             {/* Search bar */}
             <Box
-              component={motion.div}
+              component={m.div}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -347,7 +347,7 @@ const DocumentationPage = () => {
         <Container maxWidth="lg">
           {/* Breadcrumbs */}
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -364,7 +364,7 @@ const DocumentationPage = () => {
           <Grid 
             container 
             spacing={4}
-            component={motion.div}
+            component={m.div}
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
@@ -373,7 +373,7 @@ const DocumentationPage = () => {
             <Grid item xs={12} md={3}>
               <Paper
                 elevation={0}
-                component={motion.div}
+                component={m.div}
                 variants={fadeInUp}
                 sx={{ 
                   p: 3, 
@@ -419,7 +419,7 @@ const DocumentationPage = () => {
             </Grid>
 
             {/* Main content */}
-            <Grid item xs={12} md={9} component={motion.div} variants={fadeInUp}>
+            <Grid item xs={12} md={9} component={m.div} variants={fadeInUp}>
               <Paper
                 elevation={0}
                 sx={{ 

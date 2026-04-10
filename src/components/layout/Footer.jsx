@@ -101,6 +101,9 @@ const Footer = () => {
                 component="img" 
                 src={logoImg} 
                 alt="MultiPost — multi-platform video distribution tool"
+                loading="lazy"
+                width={45}
+                height={45}
                 sx={{ height: 45, mr: 1 }}
               />
             </Box>

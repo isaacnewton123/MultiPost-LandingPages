@@ -15,7 +15,7 @@ import {
   useTheme
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 
 // Icons
@@ -187,7 +187,7 @@ However, no internet transmission or electronic storage method is 100% secure, s
           </Breadcrumbs>
           
           <Typography 
-            component={motion.h1}
+            component={m.h1}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -199,7 +199,7 @@ However, no internet transmission or electronic storage method is 100% secure, s
           </Typography>
           
           <Typography 
-            component={motion.p}
+            component={m.p}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -214,7 +214,7 @@ However, no internet transmission or electronic storage method is 100% secure, s
           </Typography>
           
           <Typography 
-            component={motion.p}
+            component={m.p}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -227,7 +227,7 @@ However, no internet transmission or electronic storage method is 100% secure, s
       </Box>
       
       <Container 
-        component={motion.div}
+        component={m.div}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.4 }}

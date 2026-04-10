@@ -13,7 +13,7 @@ import {
   useTheme,
   Paper
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // Icons
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -99,7 +99,7 @@ const HomePage = () => {
           <Grid container spacing={3} alignItems="center">
             <Grid item xs={12} md={6}>
               <Box
-                component={motion.div}
+                component={m.div}
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
@@ -119,7 +119,7 @@ const HomePage = () => {
               </Box>
 
               <Box
-                component={motion.div}
+                component={m.div}
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -148,7 +148,7 @@ const HomePage = () => {
               <Stack 
                 direction={{ xs: 'column', sm: 'row' }} 
                 spacing={2}
-                component={motion.div}
+                component={m.div}
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -200,7 +200,7 @@ const HomePage = () => {
 
               {/* Platforms supported */}
               <Box
-                component={motion.div}
+                component={m.div}
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -260,7 +260,7 @@ const HomePage = () => {
               }}
             >
               <Box
-                component={motion.div}
+                component={m.div}
                 initial="hidden"
                 animate="visible"
                 variants={fadeInRight}
@@ -319,9 +319,13 @@ const HomePage = () => {
                     component="img"
                     src={logoImg}
                     alt="MultiPost auto-posting dashboard for multi-platform video distribution"
-                    loading="lazy"
+                    loading="eager"
+                    fetchpriority="high"
+                    width={400}
+                    height={400}
                     sx={{
                       width: '80%',
+                      height: 'auto',
                       borderRadius: 3,
                       objectFit: 'contain',
                       transform: 'scale(1.2)',
@@ -345,7 +349,7 @@ const HomePage = () => {
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center', mb: 8 }}>
             <Typography 
-              component={motion.h2}
+              component={m.h2}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -363,7 +367,7 @@ const HomePage = () => {
               Why Choose MultiPost
             </Typography>
             <Typography 
-              component={motion.p}
+              component={m.p}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -382,7 +386,7 @@ const HomePage = () => {
           </Box>
 
           <Box
-            component={motion.div}
+            component={m.div}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -408,7 +412,7 @@ const HomePage = () => {
               ].map((feature, i) => (
                 <Grid item xs={12} md={4} key={i}>
                   <Card 
-                    component={motion.div}
+                    component={m.div}
                     variants={fadeInUp}
                     sx={{ 
                       height: '100%',
@@ -438,7 +442,7 @@ const HomePage = () => {
           </Box>
 
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -473,7 +477,7 @@ const HomePage = () => {
       >
         <Container maxWidth="md">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

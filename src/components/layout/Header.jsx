@@ -69,6 +69,9 @@ function Header({ scrolled }) {
               component="img" 
               src={logoImg} 
               alt="MultiPost — multi-platform video distribution tool"
+              loading="eager"
+              width={50}
+              height={50}
               sx={{ 
                 height: 50, 
                 display: 'flex',
@@ -189,6 +192,9 @@ function Header({ scrolled }) {
             component="img" 
             src={logoImg} 
             alt="MultiPost — multi-platform video distribution tool"
+            loading="eager"
+            width={40}
+            height={40}
             sx={{ 
               height: 40, 
               mb: 4,

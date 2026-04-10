@@ -17,7 +17,7 @@ import {
   Button
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // Icons
 import DescriptionIcon from '@mui/icons-material/DescriptionOutlined';
@@ -197,7 +197,7 @@ In no event shall our aggregate liability for all claims relating to the service
           </Breadcrumbs>
           
           <Typography 
-            component={motion.h1}
+            component={m.h1}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -209,7 +209,7 @@ In no event shall our aggregate liability for all claims relating to the service
           </Typography>
           
           <Typography 
-            component={motion.p}
+            component={m.p}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -224,7 +224,7 @@ In no event shall our aggregate liability for all claims relating to the service
           </Typography>
           
           <Typography 
-            component={motion.p}
+            component={m.p}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -237,7 +237,7 @@ In no event shall our aggregate liability for all claims relating to the service
       </Box>
       
       <Container 
-        component={motion.div}
+        component={m.div}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.4 }}

@@ -14,7 +14,7 @@ import {
   Grid,
   Divider
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // Icons
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -208,7 +208,7 @@ const FAQPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -241,7 +241,7 @@ const FAQPage = () => {
 
             {/* Search Box */}
             <Box
-              component={motion.div}
+              component={m.div}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -307,7 +307,7 @@ const FAQPage = () => {
               item 
               xs={12} 
               md={3}
-              component={motion.div}
+              component={m.div}
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
@@ -353,7 +353,7 @@ const FAQPage = () => {
             {/* Right Column - FAQs */}
             <Grid item xs={12} md={9}>
               <Box
-                component={motion.div}
+                component={m.div}
                 variants={staggerContainer}
                 initial="hidden"
                 animate="visible"
@@ -364,7 +364,7 @@ const FAQPage = () => {
                       key={i} 
                       sx={{ mb: 6 }}
                       id={category.title.toLowerCase().replace(/\s+/g, '-')}
-                      component={motion.div}
+                      component={m.div}
                       variants={fadeInUp}
                     >
                       <Typography 
@@ -454,7 +454,7 @@ const FAQPage = () => {
       >
         <Container maxWidth="md">
           <Paper
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

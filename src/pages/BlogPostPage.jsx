@@ -19,7 +19,7 @@ import {
   Grid,
   useTheme,
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PersonIcon from '@mui/icons-material/Person';
@@ -61,7 +61,7 @@ const BlogPostPage = () => {
       >
         <Container maxWidth="md">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -119,7 +119,10 @@ const BlogPostPage = () => {
             component="img"
             src={post.image}
             alt={`${post.title} — MultiPost blog`}
-            loading="lazy"
+            loading="eager"
+            fetchpriority="high"
+            width={800}
+            height={420}
             sx={{
               width: '100%',
               height: { xs: 220, sm: 320, md: 420 },
@@ -134,7 +137,7 @@ const BlogPostPage = () => {
       {/* Article Content */}
       <Container maxWidth="md" sx={{ py: { xs: 4, md: 6 } }}>
         <Box
-          component={motion.div}
+          component={m.div}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}

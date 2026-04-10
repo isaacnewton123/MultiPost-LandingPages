@@ -14,7 +14,7 @@ import {
   ListItemIcon,
   ListItemText
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // Icons
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -80,7 +80,7 @@ const AboutPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -127,7 +127,7 @@ const AboutPage = () => {
               item 
               xs={12} 
               md={6}
-              component={motion.div}
+              component={m.div}
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -165,7 +165,7 @@ const AboutPage = () => {
               item 
               xs={12} 
               md={6}
-              component={motion.div}
+              component={m.div}
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -234,7 +234,7 @@ const AboutPage = () => {
       >
         <Container maxWidth="md">
           <Paper
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Button, Paper, useTheme } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const CTA = () => {
@@ -16,7 +16,7 @@ const CTA = () => {
     >
       <Container maxWidth="lg">
         <Paper
-          component={motion.div}
+          component={m.div}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -63,7 +63,7 @@ const CTA = () => {
 
           <Box sx={{ position: 'relative', zIndex: 1 }}>
             <Typography 
-              component={motion.h2}
+              component={m.h2}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -80,7 +80,7 @@ const CTA = () => {
             </Typography>
             
             <Typography 
-              component={motion.p}
+              component={m.p}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -97,7 +97,7 @@ const CTA = () => {
             </Typography>
             
             <Box
-              component={motion.div}
+              component={m.div}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

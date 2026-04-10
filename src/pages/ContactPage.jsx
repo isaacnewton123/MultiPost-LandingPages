@@ -20,7 +20,7 @@ import {
   Alert,
   CircularProgress
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // Icons
 import EmailIcon from '@mui/icons-material/Email';
@@ -138,7 +138,7 @@ const ContactPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -187,7 +187,7 @@ const ContactPage = () => {
           <Grid 
             container 
             spacing={4}
-            component={motion.div}
+            component={m.div}
             initial="hidden"
             animate="visible"
             variants={{
@@ -206,7 +206,7 @@ const ContactPage = () => {
               xs={12} 
               md={7} 
               lg={8}
-              component={motion.div}
+              component={m.div}
               variants={fadeInUp}
             >
               <Paper
@@ -355,7 +355,7 @@ const ContactPage = () => {
               xs={12} 
               md={5}
               lg={4}
-              component={motion.div}
+              component={m.div}
               variants={fadeInUp}
             >
               <Stack spacing={3}>

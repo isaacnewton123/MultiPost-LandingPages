@@ -20,7 +20,7 @@ import {
   Switch,
   useTheme
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // Icons
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -151,7 +151,7 @@ const PricingPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -235,13 +235,13 @@ const PricingPage = () => {
             container 
             spacing={4} 
             justifyContent="center"
-            component={motion.div}
+            component={m.div}
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
           >
             {plans.map((plan) => (
-              <Grid item xs={12} sm={6} md={3} key={plan.id} component={motion.div} variants={fadeInUp}>
+              <Grid item xs={12} sm={6} md={3} key={plan.id} component={m.div} variants={fadeInUp}>
                 <Card
                   elevation={plan.popular ? 8 : 1}
                   sx={{
@@ -353,7 +353,7 @@ const PricingPage = () => {
           
           {/* Enterprise call to action */}
           <Paper
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.7 } }}
             elevation={0}
@@ -448,7 +448,7 @@ const PricingPage = () => {
       >
         <Container maxWidth="md">
           <Card
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

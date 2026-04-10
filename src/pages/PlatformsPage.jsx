@@ -14,7 +14,7 @@ import {
   Avatar,
   Chip
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // Platform Icons
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -124,7 +124,7 @@ const PlatformsPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -167,7 +167,7 @@ const PlatformsPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -214,7 +214,7 @@ const PlatformsPage = () => {
           </Box>
 
           <Box
-            component={motion.div}
+            component={m.div}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -224,7 +224,7 @@ const PlatformsPage = () => {
               {platforms.map((platform, i) => (
                 <Grid item xs={12} md={6} key={i}>
                   <Card
-                    component={motion.div}
+                    component={m.div}
                     variants={fadeInUp}
                     sx={{
                       height: '100%',
@@ -315,7 +315,7 @@ const PlatformsPage = () => {
       >
         <Container maxWidth="md">
           <Paper
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

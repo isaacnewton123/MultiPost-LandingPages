@@ -17,7 +17,7 @@ import {
   Divider,
   useTheme,
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // Icons
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -115,7 +115,7 @@ const BlogPage = () => {
       >
         <Container maxWidth="lg">
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -167,7 +167,7 @@ const BlogPage = () => {
         <Container maxWidth="lg">
           {/* Category filters */}
           <Box
-            component={motion.div}
+            component={m.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -194,7 +194,7 @@ const BlogPage = () => {
           <Grid
             container
             spacing={4}
-            component={motion.div}
+            component={m.div}
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
@@ -206,7 +206,7 @@ const BlogPage = () => {
                 sm={6}
                 md={4}
                 key={post.slug}
-                component={motion.div}
+                component={m.div}
                 variants={fadeInUp}
               >
                 <Card
@@ -269,7 +269,7 @@ const BlogPage = () => {
           {hasMore && (
             <Box
               sx={{ mt: 6, display: 'flex', justifyContent: 'center' }}
-              component={motion.div}
+              component={m.div}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
