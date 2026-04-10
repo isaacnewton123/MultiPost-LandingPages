@@ -1,5 +1,5 @@
 {
-  "buildCommand": "node prerender.js",
+  "buildCommand": "bun prerender.js",
   "outputDirectory": "dist",
   "framework": null,
   "headers": [

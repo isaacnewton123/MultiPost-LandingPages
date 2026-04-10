@@ -5,10 +5,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "node prerender.js",
+    "dev": "bun x vite",
+    "build": "bun prerender.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "bun x vite preview"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
