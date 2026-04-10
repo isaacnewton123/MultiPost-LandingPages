@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
@@ -45,6 +47,8 @@ function App() {
 
   return (
     <>
+      <Analytics />
+      <SpeedInsights />
       <ScrollToTop />
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Header scrolled={scrolled} />
