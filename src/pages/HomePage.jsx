@@ -176,6 +176,7 @@ const HomePage = () => {
                   size="large"
                   component={RouterLink}
                   to="/features"
+                  aria-label="Learn more about MultiPost features"
                   sx={{
                     px: 4,
                     py: 1.5,

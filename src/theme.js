@@ -10,9 +10,9 @@ const theme = createTheme({
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#e84c3d', // Vibrant accent color for CTAs
-      light: '#ff7b6a',
-      dark: '#b22e22',
+      main: '#d32f2f', // Accessible CTA red (5.0:1 on white)
+      light: '#ffab91', // Accessible accent on dark bg (4.7:1 on primary.main)
+      dark: '#9a0007',
       contrastText: '#ffffff',
     },
     background: {
@@ -96,8 +96,8 @@ const theme = createTheme({
           boxShadow: '0 4px 12px rgba(30, 78, 140, 0.25)',
         },
         containedSecondary: {
-          backgroundImage: 'linear-gradient(135deg, #e84c3d 0%, #ff6b5b 100%)',
-          boxShadow: '0 4px 12px rgba(232, 76, 61, 0.25)',
+          backgroundImage: 'linear-gradient(135deg, #d32f2f 0%, #e53935 100%)',
+          boxShadow: '0 4px 12px rgba(211, 47, 47, 0.25)',
         },
         outlined: {
           borderWidth: 2,

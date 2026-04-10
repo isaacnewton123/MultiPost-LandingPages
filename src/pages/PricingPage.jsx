@@ -8,7 +8,6 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
@@ -164,11 +163,12 @@ const PricingPage = () => {
                 mb: 2,
               }}
             >
-              Start Free, <Box component="span" sx={{ color: theme.palette.secondary.main }}>Upgrade Anytime</Box>
+              Start Free, <Box component="span" sx={{ color: theme.palette.secondary.light }}>Upgrade Anytime</Box>
             </Typography>
             
             <Typography
               variant="h5"
+              component="p"
               sx={{
                 opacity: 0.9,
                 mb: 6,
@@ -191,6 +191,7 @@ const PricingPage = () => {
             >
               <Typography
                 variant="subtitle1"
+                component="span"
                 sx={{ fontWeight: annually ? 400 : 600, mr: 1 }}
               >
                 Monthly
@@ -202,6 +203,7 @@ const PricingPage = () => {
               />
               <Typography
                 variant="subtitle1"
+                component="span"
                 sx={{ fontWeight: annually ? 600 : 400, ml: 1 }}
               >
                 Annually
@@ -473,6 +475,7 @@ const PricingPage = () => {
             </Typography>
             <Typography
               variant="h6"
+              component="p"
               color="textSecondary"
               sx={{
                 mb: 4,
