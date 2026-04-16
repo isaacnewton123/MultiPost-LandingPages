@@ -57,7 +57,7 @@ const staggerContainer = {
 
 // ── Static data (hoisted outside component for performance) ─────────
 const FOUNDER_PHOTO =
-  'https://scontent.fcgk20-1.fna.fbcdn.net/v/t39.30808-6/597494312_3455021941319192_8331494056731146890_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeFbKmXz_pqsrjQ0P7RRcBu_g-kWogxFHkGD6RaiDEUeQX3_pQFp1ogVlyGI4Xsx4LdcvJ71StxX83Pya_-QU76C&_nc_ohc=BItrTRAit54Q7kNvwH1fDm9&_nc_oc=Adr7yS9R9gHKtzPwJ0vsjcC0UAAA99wlZkZBYFRcirqTkK652QdSw40KD_uZouE9oBSvW6IWNuw72unLR_iXyQ0W&_nc_zt=23&_nc_ht=scontent.fcgk20-1.fna&_nc_gid=6sKdA0ifcaDkgb0raiTqVQ&_nc_ss=7a3a8&oh=00_Af2RnX1TOYUXh3sAlJBYuU0lLm9uBFFBWBGIYa1M6I71IQ&oe=69DF14F9';
+  'https://pbs.twimg.com/media/HF_bFBMaoAAh8xH?format=jpg&name=small';
 
 const FOUNDER_SOCIALS = [
   { label: 'GitHub', href: 'https://github.com/isaacnewton123', icon: <GitHubIcon /> },
